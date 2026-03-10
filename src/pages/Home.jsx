@@ -13,11 +13,11 @@ export default function Home() {
       <Hero />
       <ClientMarquee />
       <Narrative />
-      <Services />
       <ProjectCarousel 
         subtitleOverride="Digital Operations Log"
         titleOverride="Recent Deployments" 
       />
+      <Services />
       <Methodology />
       <LetsTalk />
     </main>
