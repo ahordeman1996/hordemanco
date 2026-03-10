@@ -9,16 +9,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectCarousel({ currentSlug, subtitleOverride, titleOverride }) {
   const containerRef = useRef(null);
-
-  // Filter out the current project and randomize the order
-  const otherProjects = [...projects]
-    .filter(p => p.slug !== currentSlug)
-    .sort(() => 0.5 - Math.random());
-
-  // Duplicate for seamless looping
-  const loopingProjects = [...otherProjects, ...otherProjects];
+  const [loopingProjects, setLoopingProjects] = React.useState([]);
 
   useEffect(() => {
+    // Filter out the current project and randomize the order only once on mount
+    const otherProjects = [...projects]
+      .filter(p => p.slug !== currentSlug)
+      .sort(() => 0.5 - Math.random());
+
+    // Duplicate for seamless looping
+    setLoopingProjects([...otherProjects, ...otherProjects]);
+  }, [currentSlug]);
+
+  useEffect(() => {
+    // Wait for the random loop to instantiate so we don't try animating 0 nodes
+    if (loopingProjects.length === 0) return;
+
     let ctx = gsap.context(() => {
       // Entrance animation
       gsap.fromTo('.carousel-item',
@@ -49,9 +55,9 @@ export default function ProjectCarousel({ currentSlug, subtitleOverride, titleOv
 
     }, containerRef);
     return () => ctx.revert();
-  }, [currentSlug, otherProjects]);
+  }, [currentSlug, loopingProjects]);
 
-  if (otherProjects.length === 0) return null;
+  if (loopingProjects.length === 0) return null;
 
   return (
     <section ref={containerRef} className="relative z-20 w-full bg-hc-black pt-24 pb-32 border-t border-hc-white/10 overflow-hidden">

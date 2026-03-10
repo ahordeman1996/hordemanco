@@ -5,8 +5,12 @@ import { projects } from '../data/projects';
 import ScrambleText from '../components/ScrambleText';
 
 export default function Work() {
+  const [randomizedProjects, setRandomizedProjects] = React.useState([]);
 
   useEffect(() => {
+    // Randomize projects only once when the component mounts
+    setRandomizedProjects([...projects].sort(() => 0.5 - Math.random()));
+
     let ctx = gsap.context(() => {
       gsap.fromTo('.gallery-item',
         { y: 50, opacity: 0 },
@@ -31,7 +35,7 @@ export default function Work() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          {[...projects].sort(() => 0.5 - Math.random()).map((project, i) => (
+          {randomizedProjects.map((project, i) => (
             <Link to={`/work/${project.slug}`} key={i} className="gallery-item group block relative overflow-hidden bg-hc-white/5 border border-hc-white/10 interactive">
 
               {/* Image Container */}

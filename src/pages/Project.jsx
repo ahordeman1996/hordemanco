@@ -106,7 +106,7 @@ export default function Project() {
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-hc-red mb-4">Labels</p>
                 <div className="flex flex-wrap gap-6 items-center">
-                  {project.labels.map((labelSrc, i) => (
+                  {project.labels.slice().sort().map((labelSrc, i) => (
                     <img
                       key={i}
                       src={labelSrc}
