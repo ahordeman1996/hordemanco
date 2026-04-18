@@ -45,13 +45,14 @@ export default function Work() {
                   alt={project.title}
                   className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 mix-blend-luminosity group-hover:mix-blend-normal"
                 />
-                <div className="absolute inset-0 bg-hc-red mix-blend-multiply opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-hc-red mix-blend-multiply opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-hc-black via-hc-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
               </div>
 
               {/* Data Overlay */}
-              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-hc-black to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <p className="font-mono text-xs uppercase tracking-widest text-hc-red mb-2">
-                  <ScrambleText text={project.client} />
+              <div className="absolute inset-x-0 bottom-0 p-6 z-20 bg-gradient-to-t from-hc-black to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <p className="font-mono text-xs uppercase tracking-widest text-hc-red mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <ScrambleText text={project.categories.join(' // ')} />
                 </p>
                 <h3 className="font-heading text-3xl text-hc-white uppercase tracking-tighter">
                   {project.title}

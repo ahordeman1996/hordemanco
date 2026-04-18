@@ -7,7 +7,7 @@ export const projects = [
     agencyContract: 'Done under contract for Thrive Web Designs',
     tags: ['Creative Direction', 'Web Design'],
     categories: ['Web Design'],
-    thumbnail: '/images/work/Chains for Tracks/Chains for Tracks Homepage.jpg',
+    thumbnail: '/images/work/Chains for Tracks thumbnail.webp',
     modules: [
       {
         type: 'WebDesign',
@@ -33,7 +33,7 @@ export const projects = [
     agencyContract: 'Done under contract for Thrive Web Designs',
     tags: ['Creative Direction', 'Logo Design', 'Web Design'],
     categories: ['Logo Design', 'Web Design'],
-    thumbnail: '/images/work/Bare Metal Standard/Bare-Metal-Standard-Homepage.webp',
+    thumbnail: '/images/work/Bare Metal Standard thumbnail.webp',
     modules: [
       {
         type: 'LogoDesign',
@@ -71,7 +71,7 @@ export const projects = [
     agencyContract: 'Done under contract for Thrive Web Designs',
     tags: ['Art Direction', 'Creative Direction', 'Brand Identity Design', 'Logo Design', 'Web Design', 'Print Design'],
     categories: ['Logo Design', 'Web Design', 'Print Design'],
-    thumbnail: '/images/work/BioDwell/BioDwell Homepage.webp',
+    thumbnail: '/images/work/BioDwell thumbnail.webp',
     modules: [
       {
         type: 'LogoDesign',
@@ -125,7 +125,7 @@ export const projects = [
     tags: ['Art Direction', 'Graphic Design', 'Print Design'],
     categories: ['Album Artwork', 'Layout Design'],
     labels: ['/assets/Fearless Records.svg', '/assets/Concord.svg'],
-    thumbnail: '/images/work/The Requiem/A Cure To Poison The World/A-Cure-to-Poison-the-World Front Cover.webp',
+    thumbnail: '/images/work/The Requiem thumbnail.webp',
     modules: [
       {
         type: 'JewelcaseDesign',

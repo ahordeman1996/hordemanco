@@ -42,7 +42,7 @@ export default function WebDesign({ data }) {
   }, [data]);
 
   return (
-    <section ref={containerRef} className="w-full pb-32">
+    <section ref={containerRef} className="w-full pb-48 md:pb-64">
 
       {/* 1. Context / Issue */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 mb-24 md:mb-32">
@@ -84,15 +84,18 @@ export default function WebDesign({ data }) {
 
       {/* Secondary Gallery Item 1 w/ Mobile Overlay Optional */}
       {data.images?.gallery && data.images.gallery[0] && (
-        <div className={`max-w-7xl mx-auto px-6 md:px-12 mb-24 md:mb-32 relative ${data.images.mobileOverlay ? 'pb-12 md:pb-24' : ''}`}>
+        <div className={`max-w-7xl mx-auto px-6 md:px-12 relative ${data.images.mobileOverlay ? 'mb-40 md:mb-64 lg:mb-72' : 'mb-24 md:mb-32'}`}>
           <div className="w-full lg:w-[85%] relative image-reveal z-0">
             <img src={data.images.gallery[0]} alt="Project Gallery 1 Desktop" className="w-full h-auto object-contain border border-hc-white/10 rounded-[1rem] md:rounded-[2rem]" />
           </div>
 
           {/* Overlapping Mobile Frame */}
           {data.images.mobileOverlay && (
-            <div className="w-[45%] md:w-[25%] absolute bottom-[-5%] right-[5%] md:right-[15%] z-10 image-reveal">
-              <img src={data.images.mobileOverlay} alt="Project Gallery 1 Mobile" className="w-full h-auto object-contain drop-shadow-2xl border border-hc-white/10 rounded-[1rem] md:rounded-[2rem]" />
+            <div className="absolute -bottom-24 right-0 lg:right-12 z-10 image-reveal transform scale-50 sm:scale-75 md:scale-100 origin-bottom-right">
+              <div className="relative w-[390px] h-[844px] drop-shadow-2xl">
+                <img src={data.images.mobileOverlay} alt="Project Gallery 1 Mobile" className="absolute inset-0 w-[390px] h-[844px] object-cover rounded-[40px] z-0" />
+                <img src="/images/work/phone mockup.webp" alt="Phone Frame" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none max-w-none" />
+              </div>
             </div>
           )}
         </div>
@@ -117,16 +120,22 @@ export default function WebDesign({ data }) {
 
       {/* Remaining Gallery Items */}
       {data.images?.gallery && data.images.gallery.length > 1 && (
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap justify-center gap-8 md:gap-16 gap-y-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap justify-center gap-8 md:gap-16 gap-y-32 md:gap-y-56">
           {data.images.gallery.slice(1).map((img, i) => {
             const isMobile = img.toLowerCase().includes('mobile');
-            // Stagger mobile screenshots by applying a top margin to odd index elements
-            const mobileClasses = `w-[45%] md:w-[25%] drop-shadow-2xl ${i % 2 !== 0 ? 'mt-12 md:mt-32' : 'mt-0'}`;
+            const mobileClasses = `transform ${i % 2 !== 0 ? 'translate-y-0 md:translate-y-32' : ''} scale-75 sm:scale-100 flex-shrink-0`;
             const desktopClasses = `w-full`;
 
             return (
               <div key={i} className={`relative image-reveal ${isMobile ? mobileClasses : desktopClasses}`}>
-                <img src={img} alt={`Project Execution ${i + 2}`} className={`w-full h-auto object-contain ${isMobile ? 'border border-hc-white/10 rounded-[1rem] md:rounded-[2rem]' : ''}`} />
+                {isMobile ? (
+                  <div className="relative w-[390px] h-[844px] drop-shadow-2xl flex-shrink-0 mx-auto">
+                    <img src={img} alt={`Project Execution ${i + 2}`} className="absolute inset-0 w-[390px] h-[844px] object-cover rounded-[40px] z-0" />
+                    <img src="/images/work/phone mockup.webp" alt="Phone Frame" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none max-w-none" />
+                  </div>
+                ) : (
+                  <img src={img} alt={`Project Execution ${i + 2}`} className="w-full h-auto object-contain" />
+                )}
               </div>
             );
           })}

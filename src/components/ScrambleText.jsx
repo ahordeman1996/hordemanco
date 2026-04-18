@@ -23,8 +23,8 @@ export default function ScrambleText({ text, as: Component = 'span', className =
         clearInterval(intervalRef.current);
       }
       
-      iteration += 1 / 3;
-    }, 30);
+      iteration += 1 / 2; // Increased reveal speed (was 1/3)
+    }, 20); // Faster tick rate (was 30ms)
   };
   
   const reset = () => {

@@ -91,8 +91,8 @@ export default function ProjectCarousel({ currentSlug, subtitleOverride, titleOv
               </div>
 
               <div className="absolute inset-x-0 bottom-0 p-8 z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <p className="font-mono text-xs uppercase tracking-widest text-hc-red mb-3">
-                  <ScrambleText text={project.client} />
+                <p className="font-mono text-xs uppercase tracking-widest text-hc-red mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <ScrambleText text={project.categories.join(' // ')} />
                 </p>
                 <h3 className="font-heading text-3xl md:text-4xl text-hc-white uppercase tracking-tighter">
                   {project.title}

@@ -41,7 +41,7 @@ export default function Footer() {
 
         <div className="md:col-span-2 flex flex-col gap-4 font-mono text-sm">
           <h4 className="text-hc-white/40 mb-4 tracking-widest text-xs">socials</h4>
-          <a href="https://www.instagram.com/hordeman.co" target="_blank" rel="noreferrer" className="text-hc-white hover:text-hc-red transition-colors w-fit flex items-center gap-2 link-hover">
+          <a href="https://www.instagram.com/hordeman.co" target="_blank" rel="noreferrer" className="text-hc-white hover:text-hc-red transition-colors w-fit flex items-center gap-2">
             <Instagram className="w-6 h-6" />
             <span className="sr-only">Instagram</span>
           </a>

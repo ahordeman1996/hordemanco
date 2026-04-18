@@ -28,42 +28,34 @@ export default function Methodology() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-
-      // Use matchMedia to only apply ScrollTrigger pinning on Desktop
       let mm = gsap.matchMedia();
 
       mm.add("(min-width: 768px)", () => {
-        // Horizontal Scroll for Desktop
-        let sections = gsap.utils.toArray('.protocol-panel');
+        let amountToScroll = containerRef.current.scrollWidth - window.innerWidth;
 
-        gsap.to(sections, {
-          xPercent: -100 * (sections.length - 1),
-          ease: 'none',
+        let tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             pin: true,
             scrub: 1,
-            snap: 1 / (sections.length - 1),
-            end: () => '+=' + containerRef.current.offsetWidth
+            invalidateOnRefresh: true,
+            end: () => '+=' + amountToScroll
           }
         });
 
-        // SVG Draw Animation for the Wolf background (scrubbed with the horizontal scroll)
-        gsap.fromTo('.wolf-path',
+        // Translate the entire container instead of individual sections for reliability
+        tl.to(containerRef.current, {
+          x: -amountToScroll,
+          ease: 'none'
+        }, 0);
+
+        // SVG Draw Animation embedded in the same timeline!
+        tl.fromTo('.wolf-path',
           { strokeDasharray: 1000, strokeDashoffset: 1000 },
-          {
-            strokeDashoffset: 0,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top top',
-              end: () => '+=' + containerRef.current.offsetWidth,
-              scrub: 1,
-            }
-          }
+          { strokeDashoffset: 0, ease: 'none' },
+          0
         );
       });
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -78,7 +70,7 @@ export default function Methodology() {
       </div>
 
       {/* Main Container for Horizontal Layout */}
-      <div ref={containerRef} className="absolute top-0 left-0 w-full h-full flex z-10 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar md:w-[300vw] md:overflow-visible">
+      <div ref={containerRef} className="absolute top-0 left-0 h-full flex z-10 overflow-x-auto overflow-y-hidden snap-x snap-mandatory hide-scrollbar w-full md:w-max md:flex-nowrap md:overflow-hidden md:snap-none">
 
         {protocols.map((protocol, index) => (
           <div key={index} className="protocol-panel w-full shrink-0 h-full flex items-center justify-center px-6 md:px-24 snap-center relative md:w-[100vw]">
