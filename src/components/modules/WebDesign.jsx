@@ -91,10 +91,10 @@ export default function WebDesign({ data }) {
 
           {/* Overlapping Mobile Frame */}
           {data.images.mobileOverlay && (
-            <div className="absolute -bottom-24 right-0 lg:right-12 z-10 image-reveal transform scale-50 sm:scale-75 md:scale-100 origin-bottom-right">
-              <div className="relative w-[390px] h-[844px] drop-shadow-2xl">
-                <img src={data.images.mobileOverlay} alt="Project Gallery 1 Mobile" className="absolute inset-0 w-[390px] h-[844px] object-cover rounded-[40px] z-0" />
-                <img src="/images/work/phone mockup.webp" alt="Phone Frame" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none max-w-none" />
+            <div className="absolute -bottom-12 md:-bottom-24 right-0 lg:right-12 z-10 image-reveal w-3/5 sm:w-1/2 md:w-[390px] drop-shadow-2xl">
+              <div className="relative w-full aspect-[390/844]" style={{ containerType: 'inline-size' }}>
+                <img src={data.images.mobileOverlay} alt="Project Gallery 1 Mobile" className="absolute inset-0 w-full h-full object-cover z-0" style={{ borderRadius: '10.25cqw' }} />
+                <img src="/images/work/phone mockup.webp" alt="Phone Frame" className="absolute top-0 left-0 w-full h-full object-contain z-10 pointer-events-none" />
               </div>
             </div>
           )}
@@ -123,15 +123,15 @@ export default function WebDesign({ data }) {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap justify-center gap-8 md:gap-16 gap-y-32 md:gap-y-56">
           {data.images.gallery.slice(1).map((img, i) => {
             const isMobile = img.toLowerCase().includes('mobile');
-            const mobileClasses = `transform ${i % 2 !== 0 ? 'translate-y-0 md:translate-y-32' : ''} scale-75 sm:scale-100 flex-shrink-0`;
-            const desktopClasses = `w-full`;
+            const mobileClasses = `w-[80%] sm:w-[60%] md:w-[390px] mx-auto transform ${i % 2 !== 0 ? 'translate-y-0 md:translate-y-32' : ''} flex-shrink-0 relative image-reveal`;
+            const desktopClasses = `w-full relative image-reveal`;
 
             return (
-              <div key={i} className={`relative image-reveal ${isMobile ? mobileClasses : desktopClasses}`}>
+              <div key={i} className={isMobile ? mobileClasses : desktopClasses}>
                 {isMobile ? (
-                  <div className="relative w-[390px] h-[844px] drop-shadow-2xl flex-shrink-0 mx-auto">
-                    <img src={img} alt={`Project Execution ${i + 2}`} className="absolute inset-0 w-[390px] h-[844px] object-cover rounded-[40px] z-0" />
-                    <img src="/images/work/phone mockup.webp" alt="Phone Frame" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none max-w-none" />
+                  <div className="relative w-full aspect-[390/844] drop-shadow-2xl mx-auto" style={{ containerType: 'inline-size' }}>
+                    <img src={img} alt={`Project Execution ${i + 2}`} className="absolute inset-0 w-full h-full object-cover z-0" style={{ borderRadius: '10.25cqw' }} />
+                    <img src="/images/work/phone mockup.webp" alt="Phone Frame" className="absolute top-0 left-0 w-full h-full object-contain z-10 pointer-events-none" />
                   </div>
                 ) : (
                   <img src={img} alt={`Project Execution ${i + 2}`} className="w-full h-auto object-contain" />
