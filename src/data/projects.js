@@ -56,9 +56,11 @@ export const projects = [
         images: {
           hero: '/images/work/Bare Metal Standard/Bare-Metal-Standard-Homepage.webp',
           gallery: [
-            '/images/work/Bare Metal Standard/bms_desktop_1773034575767.png'
+            '/images/work/Bare Metal Standard/bms_desktop_1773034575767.png',
+            '/images/work/Bare Metal Standard/Bare-Metal-Standard-mobile-2.webp',
+            '/images/work/Bare Metal Standard/Bare-Metal-Standard-mobile-3.webp'
           ],
-          mobileOverlay: '/images/work/Bare Metal Standard/bms_mobile_1773034590335.webp'
+          mobileOverlay: '/images/work/Bare Metal Standard/Bare-Metal-Standard-mobile-1.webp'
         }
       }
     ]
@@ -110,7 +112,7 @@ export const projects = [
             '/images/work/BioDwell/biodwell_mobile_2.png',
             '/images/work/BioDwell/biodwell_mobile_3.png'
           ],
-          mobileOverlay: '/images/work/BioDwell/biodwell_mobile_1.webp'
+          mobileOverlay: '/images/work/BioDwell/biodwell_mobile_1.png'
         }
       }
     ]
