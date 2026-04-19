@@ -109,10 +109,10 @@ export const projects = [
           hero: '/images/work/BioDwell/BioDwell Homepage.webp',
           gallery: [
             '/images/work/BioDwell/biodwell_tablet.webp',
-            '/images/work/BioDwell/biodwell_mobile_2.png',
-            '/images/work/BioDwell/biodwell_mobile_3.png'
+            '/images/work/BioDwell/biodwell-mobile-2.webp',
+            '/images/work/BioDwell/biodwell-mobile-3.webp'
           ],
-          mobileOverlay: '/images/work/BioDwell/biodwell_mobile_1.png'
+          mobileOverlay: '/images/work/BioDwell/biodwell-mobile-1.webp'
         }
       }
     ]
