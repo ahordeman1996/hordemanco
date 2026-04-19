@@ -58,7 +58,7 @@ export default function WebDesign({ data }) {
       </div>
 
       {/* Massive Hero Image */}
-      {data.images.hero && (
+      {data.images?.hero && (
         <div className="w-full max-w-[100rem] mx-auto px-6 mb-24 md:mb-32">
           <div className="w-full relative image-reveal">
             <img src={data.images.hero} alt="Project Hero" className="w-full h-auto object-contain" />
@@ -90,7 +90,7 @@ export default function WebDesign({ data }) {
           </div>
 
           {/* Overlapping Mobile Frame */}
-          {data.images.mobileOverlay && (
+          {data.images?.mobileOverlay && (
             <div className="absolute -bottom-12 md:-bottom-24 right-0 lg:right-12 z-10 image-reveal origin-bottom-right">
               <div className="w-[195px] h-[422px] sm:w-[292.5px] sm:h-[633px] lg:w-[390px] lg:h-[844px] drop-shadow-2xl flex-shrink-0 mx-auto">
                 <div className="relative w-[390px] h-[844px] origin-top-left scale-50 sm:scale-75 lg:scale-100">
@@ -124,7 +124,8 @@ export default function WebDesign({ data }) {
       {data.images?.gallery && data.images.gallery.length > 1 && (
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap justify-center gap-8 md:gap-16 gap-y-32 md:gap-y-56">
           {data.images.gallery.slice(1).map((img, i) => {
-            const isMobile = img.toLowerCase().includes('mobile');
+            const isMobile = typeof img === 'string' && img.toLowerCase().includes('mobile');
+            const imgSrc = typeof img === 'string' ? img : img?.src;
             const mobileClasses = `transform ${i % 2 !== 0 ? 'translate-y-0 md:translate-y-32' : ''} flex-shrink-0 relative image-reveal mx-auto flex justify-center w-full md:w-auto`;
             const desktopClasses = `w-full`;
 
@@ -133,12 +134,12 @@ export default function WebDesign({ data }) {
                 {isMobile ? (
                   <div className="w-[195px] h-[422px] sm:w-[292.5px] sm:h-[633px] md:w-[390px] md:h-[844px] drop-shadow-2xl flex-shrink-0 mx-auto">
                     <div className="relative w-[390px] h-[844px] origin-top-left scale-50 sm:scale-75 md:scale-100">
-                      <img src={img} alt={`Project Execution ${i + 2}`} className="absolute inset-0 w-[390px] h-[844px] object-cover rounded-[40px] z-0" />
+                      <img src={imgSrc} alt={`Project Execution ${i + 2}`} className="absolute inset-0 w-[390px] h-[844px] object-cover rounded-[40px] z-0" />
                       <img src="/images/work/phone mockup.webp" alt="Phone Frame" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none max-w-none" />
                     </div>
                   </div>
                 ) : (
-                  <img src={img} alt={`Project Execution ${i + 2}`} className="w-full h-auto object-contain" />
+                  <img src={imgSrc} alt={`Project Execution ${i + 2}`} className="w-full h-auto object-contain" />
                 )}
               </div>
             );
