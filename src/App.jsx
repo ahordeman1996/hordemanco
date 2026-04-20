@@ -56,7 +56,7 @@ function AnimatedRoutes() {
   return (
     <>
       <div className="flex-1">
-        <Routes location={displayLocation}>
+        <Routes location={displayLocation} key={displayLocation.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<Project />} />
